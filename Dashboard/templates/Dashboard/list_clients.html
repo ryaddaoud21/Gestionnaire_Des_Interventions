@@ -1,0 +1,130 @@
+{% extends 'Dashboard/main.html' %}
+{% block content %}
+<main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Liste des clients</h1>
+      <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Acceuil</a></li>
+          <li class="breadcrumb-item active">Liste des clients</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section dashboard">
+      <div class="row">
+
+        <!-- Left side columns -->
+        <div class="col-lg-8">
+          <div class="row">
+
+            <!-- Sales Card -->
+
+            <!-- Revenue Card -->
+
+            <!-- Top Selling -->
+            <div class="col-12">
+              <div class="card top-selling overflow-auto">
+
+                <div class="filter">
+                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                    <li class="dropdown-header text-start">
+                      <h6>Filter</h6>
+                    </li>
+
+                    <li><a class="dropdown-item" href="#">Today</a></li>
+                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                  </ul>
+                </div>
+
+                <div class="card-body pb-0">
+                  <h5 class="card-title">Liste des clients <span>| Today</span></h5>
+
+                  <table class="table table-borderless">
+                    <thead>
+                      <tr>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Addresse</th>
+                        <th scope="col">Code Postale</th>
+                        <th scope="col">Ville</th>
+                        <th scope="col">Téléphone</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for client in clients %}
+
+                      <tr>
+                        <td>{{client.Nom_Client}}</td>
+                        <td>{{client.Address}}</td>
+                        <td>{{client.Ville}}</td>
+                        <td>{{client.Code_postal}}</td>
+                        <td>{{client.Numéro}}</td>
+
+                      </tr>
+                        {% endfor  %}
+
+
+                    </tbody>
+                  </table>
+
+                </div>
+
+              </div>
+            </div><!-- End Top Selling -->
+
+          </div>
+        </div><!-- End Left side columns -->
+
+        <!-- Right side columns -->
+        <div class="col-lg-4">
+
+          <!-- Recent Activity -->
+          <div class="card">
+            <div class="filter">
+              <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                <li class="dropdown-header text-start">
+                  <h6>Filter</h6>
+                </li>
+
+                <li><a class="dropdown-item" href="#">Today</a></li>
+                <li><a class="dropdown-item" href="#">This Month</a></li>
+                <li><a class="dropdown-item" href="#">This Year</a></li>
+              </ul>
+            </div>
+
+            <div class="card-body">
+              <h5 class="card-title">Clients Ajoutés récemment <span>| Today</span></h5>
+
+              <div class="activity">
+                {% for int in interventions %}
+                <div class="activity-item d-flex">
+                  <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
+                  <div class="activity-content">
+                    Le client <a href="#" class="fw-bold text-dark">{{int.Nom_Client}}</a> ||  l'intervention #{{int.id}}
+                  </div>
+                </div><!-- End activity item-->
+                {% endfor %}
+
+              </div>
+
+            </div>
+          </div><!-- End Recent Activity -->
+
+          <!-- Budget Report -->
+
+          <!-- Website Traffic -->
+
+          <!-- News & Updates Traffic -->
+
+        </div><!-- End Right side columns -->
+
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+{% endblock content %}

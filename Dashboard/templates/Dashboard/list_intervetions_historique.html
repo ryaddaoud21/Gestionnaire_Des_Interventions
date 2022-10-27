@@ -1,0 +1,114 @@
+{% extends 'Dashboard/main.html' %}
+{% block content %}
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Liste des intervention</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Acceuil</a></li>
+          <li class="breadcrumb-item active">Liste des intervention</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section dashboard">
+      <div class="row">
+
+        <!-- Left side columns -->
+        <div class="col-lg-12">
+          <div class="row">
+
+
+            <!-- Recent Sales -->
+            <div class="col-12">
+              <div class="card recent-sales overflow-auto">
+
+                <div class="filter">
+                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                    <li class="dropdown-header text-start">
+                      <h6>Filter</h6>
+                    </li>
+
+                    <li><a class="dropdown-item" href="#">Today</a></li>
+                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                  </ul>
+                </div>
+
+                <div class="card-body">
+                  <h5 class="card-title">Historique des Interventions <span>| Mois</span></h5>
+
+                 {% for message in messages %}
+                  <div class="container-fluid p-0">
+                    <div class="alert {{ message.tags }} alert-dismissible" role="alert" >
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="True">&times;</span>
+                      </button>
+                      {{ message }}
+                    </div>
+                  </div>
+                  {% endfor %}
+                  <table class="table table-borderless datatable">
+                    <thead>
+                      <tr>
+                        <th scope="col">#ID</th>
+                        <th scope="col">Client</th>
+                        <th scope="col">Addresse</th>
+                        <th scope="col">Prix</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Detailes</th>
+                        <th scope="col">Editer</th>
+                        <th scope="col">Supprimer</th>
+
+
+                      </tr>
+                    </thead>
+                    <tbody>
+                    {% for int in interventions%}
+                      <tr>
+                        <th scope="row"><a href="#">{{int.id}}</a></th>
+                        <td>{{int.Nom_Client}}</td>
+                        <td><a href="#" class="text-primary">{{int.Address}}</a></td>
+                        <td>{{int.Prix}}$</td>
+                        {% if int.Status == 'Fait' %}
+                        <td><button type="button" class="btn btn-success btn-sm">{{int.Status}}</button></span></td>
+                        {% elif int.Status == 'en attendant' %}
+                        <td><button type="button" class="btn btn-warning btn-sm">{{int.Status}}</button></td>
+                        {% else  %}
+                        <td> <button type="button" class="btn btn-danger btn-sm">{{int.Status}}</button></td>
+
+                        {% endif  %}
+                        <td>          <a href="{% url 'intervention_detail'  int.pk %}">      <button type="button" class="btn btn-secondary btn-sm">Detailes</button></a></td>
+                        <td>                <button type="button" class="btn btn-primary btn-sm">Modifier</button></td>
+
+                        <td>              <button type="button" class="btn btn-danger"><i class="bi bi-x-lg"></i></button></td>
+
+
+
+                      </tr>
+                    {% endfor %}
+
+
+                    </tbody>
+                  </table>
+
+                </div>
+
+              </div>
+            </div><!-- End Recent Sales -->
+
+
+          </div>
+        </div><!-- End Left side columns -->
+
+
+
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+{% endblock content %}
