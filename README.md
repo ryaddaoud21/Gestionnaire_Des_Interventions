@@ -19,3 +19,21 @@ Coté Technicien ( utilisateurs):
 
 
 
+# git clone https://github.com/ryaddaoud21/Gestionnaire_Des_Interventions
+# cd index
+# python3 -m venv venv
+# source env/bin/activate
+//pour l'installation des exigences 
+
+# pip install -r requirements.txt
+//pour la configuration de BDD 
+
+# python manage.py makemigrations
+# python manage.py migrate
+
+//pour la création de super utilisateur 
+
+# python manage.py createsuperuser
+//pour le lancement de serveur 
+# python manage.py runserver
+
