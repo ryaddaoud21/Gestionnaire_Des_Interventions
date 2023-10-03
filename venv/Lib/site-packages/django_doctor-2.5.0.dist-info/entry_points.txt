@@ -1,0 +1,3 @@
+[console_scripts]
+django_doctor = django_doctor.staticanalysis.commands.command:main
+

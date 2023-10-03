@@ -115,8 +115,34 @@ def ajouter_client(request):
 
 
 
+def get_intervention_addresses(request):
+    interventions = Intervention.objects.all()
+    addresses = [intervention.Address for intervention in interventions if intervention.Address]
+    return addresses
+
+
+from geopy.geocoders import Nominatim
+
+
 @login_required
 def index(request):
+    geolocator = Nominatim(user_agent="Dashboard")
+    location = geolocator.geocode("France")
+    if location:
+        print(location.address)
+    else:
+        print("Adresse non trouvée")
+
+    interventions = Intervention.objects.all()
+    coordinates = []
+
+    for intervention in interventions:
+        if intervention.Address:
+            location = geolocator.geocode(intervention.Address)
+            print(location)
+            if location:
+                coordinates.append([location.latitude, location.longitude])
+                print(coordinates)
     interventions = Intervention.objects.all()
     Total_C = Client.objects.all().count()
     Total_I = Intervention.objects.all().count()
@@ -150,7 +176,7 @@ def index(request):
 
 
     context={'interventions':interventions,'Total_I':Total_I,'Total_C':Total_C,'Total_U':Total_U, 'labelz': labels,
-        'data': data,'data_ints':data_ints,'labelz_ints':labels_ints}
+        'data': data,'data_ints':data_ints,'labelz_ints':labels_ints,'coordinates': coordinates}
     return render(request, 'Dashboard/index.html',context)
 
 
@@ -167,6 +193,7 @@ def population_chart(request):
 
 from django.db.models import Sum
 from django.http import JsonResponse
+
 
 
 
@@ -202,6 +229,7 @@ def register(request):
             login(request, user,backend='django.contrib.auth.backends.ModelBackend')
             return redirect('index')
     else:
+        print('erreur')
         form = SignUpForm()
     context = {'form':form}
     return render(request, 'Dashboard/register.html',context)

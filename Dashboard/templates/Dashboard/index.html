@@ -1,12 +1,17 @@
 {% extends 'Dashboard/main.html' %}
+
+
 {% block content %}
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+
 <main id="main" class="main">
 
     <div class="pagetitle">
       <h1>tableau de bord</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
           <li class="breadcrumb-item active">tableau de bord</li>
         </ol>
       </nav>
@@ -121,6 +126,17 @@
                 </div>
               </div>
 
+            </div>
+            <div class="col-12" >
+                <div class="card">
+                <div class="card-body" >
+                  <h5 class="card-title">Carte <span>| Les adresses à intervenir</span></h5>
+
+                    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+                   <div id="map" style="height: 400px;"></div>
+                </div>
+            </div>
             </div><!-- End Customers Card -->
 
             <!-- Reports -->
@@ -244,8 +260,22 @@
     </section>
 
   </main><!-- End #main -->
-  <script>
 
+ <script>
+        var map = L.map('map').setView([43.6047, 1.4442], 10); // Coordonnées de Toulouse
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+        }).addTo(map);
+
+        // Loop through the coordinates and add markers to the map
+        var coordinates = {{ coordinates|safe }};
+        for (var i = 0; i < coordinates.length; i++) {
+            var coordinate = coordinates[i];
+            L.marker(coordinate).addTo(map);
+        }
+    </script>
+<script>
 
     var config = {
       type: 'pie',
@@ -273,11 +303,11 @@
 
 
 
-  </script>
+ </script>
 
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
-  <script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+<script>
 
     $(function () {
 
@@ -315,10 +345,11 @@
 
     });
 
-  </script>
+ </script>
 
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+
 
 {% endblock content %}
