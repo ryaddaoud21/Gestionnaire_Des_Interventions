@@ -139,10 +139,8 @@ def index(request):
     for intervention in interventions:
         if intervention.Address:
             location = geolocator.geocode(intervention.Address)
-            print(location)
             if location:
                 coordinates.append([location.latitude, location.longitude])
-                print(coordinates)
     interventions = Intervention.objects.all()
     Total_C = Client.objects.all().count()
     Total_I = Intervention.objects.all().count()
@@ -171,8 +169,7 @@ def index(request):
         labels_ints.append(entry['Date'])
         data_ints.append(entry['interventions'])
 
-    print(labels_ints)
-    print(data_ints)
+
 
 
     context={'interventions':interventions,'Total_I':Total_I,'Total_C':Total_C,'Total_U':Total_U, 'labelz': labels,
