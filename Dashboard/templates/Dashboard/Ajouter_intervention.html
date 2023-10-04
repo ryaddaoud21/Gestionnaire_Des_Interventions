@@ -24,102 +24,73 @@
               <h5 class="card-title">Ajouter une intervention</h5>
 
               <!-- General Form Elements -->
-              <form method="post" action="{% url 'ajouter_intervention' %}"  >
-                {% csrf_token %}
-                <div class="row mb-3">
-                  <label  class="col-sm-3 col-form-label">Nom de Client</label>
-                  <div class="col-sm-8">
-                    <input type="text"  name="Nom_Client" class="form-control">
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label  class="col-sm-3 col-form-label">Email</label>
-                  <div class="col-sm-8">
-                    <input type="email" name="Email" class="form-control">
-                  </div>
-                </div>
+<form method="post" action="{% url 'ajouter_intervention' %}">
+  {% csrf_token %}
+  <div class="row mb-3">
+    <div class="col-sm-6">
+      <label class="col-form-label">Nom de Client</label>
+      <input type="text" name="Nom_Client" class="form-control">
+    </div>
+    <div class="col-sm-6">
+      <label class="col-form-label">Email</label>
+      <input type="email" name="Email" class="form-control">
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-sm-6">
+      <label class="col-form-label">Numéro de Téléphone</label>
+      <input type="text" name="Numéro" class="form-control">
+    </div>
+    <div class="col-sm-6">
+      <label class="col-form-label">Date</label>
+      <input type="date" name="Date" class="form-control">
+    </div>
+  </div>
+    <div class="row mb-3">
+    <div class="col-sm-6">
+      <label class="col-form-label">Commentaire</label>
+      <textarea class="form-control" name="Commentaire" style="height: 100px"></textarea>
+    </div>
+    <div class="col-sm-6">
+      <label class="col-form-label">Adresse</label>
+      <textarea class="form-control" name="Address" style="height: 100px"></textarea>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-sm-6">
+      <label class="col-form-label">Ville</label>
+      <input type="text" name="Ville" class="form-control">
+    </div>
+    <div class="col-sm-6">
+      <label class="col-form-label">Code postal</label>
+      <input type="text" name="Code_postal" class="form-control">
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-sm-6">
+      <label class="col-form-label">Technicien</label>
+      <select name="Par" class="form-select" aria-label="Default select example">
+        {% for tech in techs %}
+        <option value="{{tech.id}}" name="Par">{{tech.user.username}}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col-sm-6">
+      <label class="col-form-label">Status</label>
+      <select class="form-select" name="Status" aria-label="Default select example">
+        <option selected value="Fait" name="Status">Fait</option>
+        <option value="En Attendant" name="Status">En Attendant</option>
+        <option value="Annulé" name="Status">Annulé</option>
+      </select>
+    </div>
+  </div>
 
-                <div class="row mb-3">
-                  <label class="col-sm-3 col-form-label">Numéro de Téléphone</label>
-                  <div class="col-sm-8">
-                    <input type="text" name="Numéro" class="form-control">
-                  </div>
-                </div>
-
-                <div class="row mb-3">
-                  <label class="col-sm-3 col-form-label">Date</label>
-                  <div class="col-sm-8">
-                    <input type="date" name="Date"  class="form-control">
-                  </div>
-                </div>
-
-
-
-                <div class="row mb-3">
-                  <label  class="col-sm-3 col-form-label">Addresse</label>
-                  <div class="col-sm-8">
-                    <textarea class="form-control"  name="Address" style="height: 100px"></textarea>
-                  </div>
-                </div>
-
-             <div class="row mb-3">
-                  <label class="col-sm-3 col-form-label">Ville</label>
-                  <div class="col-sm-8">
-                    <input type="text"  name="Ville" class="form-control">
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label class="col-sm-3 col-form-label">Code postal</label>
-                  <div class="col-sm-8">
-                    <input type="text"  name="Code_postal" class="form-control">
-                  </div>
-                </div>
-               <div class="row mb-3">
-                  <label  class="col-sm-3 col-form-label">Commentaire</label>
-                  <div class="col-sm-8">
-                    <textarea class="form-control" name="Commentaire" style="height: 100px"></textarea>
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label class="col-sm-3 col-form-label">Prix</label>
-                  <div class="col-sm-8">
-                    <input type="text"  name="Prix" class="form-control">
-                  </div>
-                </div>
-
-
-
-                <div class="row mb-3">
-                  <label class="col-sm-3 col-form-label">Technicien</label>
-                  <div class="col-sm-8">
-                    <select name="Par" class="form-select" aria-label="Default select example">
-                      {% for tech in techs %}
-                      <option value="{{tech.id}}" name="Par">{{tech.user.username}} </option>
-                      {% endfor %}
-                    </select>
-                  </div>
-                </div>
-
-                    <div class="row mb-3">
-                  <label class="col-sm-3 col-form-label">Status</label>
-                  <div class="col-sm-8">
-                    <select class="form-select" name="Status" aria-label="Default select example">
-                      <option selected value="Fait" name="Status"  >Fait</option>
-                      <option value="En Attendant" name="Status" >En Attendant</option>
-                      <option value="Annulé" name="Status" >Annulé</option>
-                    </select>
-                  </div>
-                </div>
-
-
-                <div class="row mb-3">
-                  <label class="col-sm-3 col-form-label"> Ajouter</label>
-                  <div class="col-sm-8">
-                    <button type="submit" class="btn btn-primary">Ajouter</button>
-                  </div>
-                </div>
-
-              </form><!-- End General Form Elements -->
+  <div class="row mb-3">
+    <div class="col text-center">
+      <button type="submit" class="btn btn-primary">Ajouter</button>
+    </div>
+  </div>
+</form>
 
             </div>
           </div>

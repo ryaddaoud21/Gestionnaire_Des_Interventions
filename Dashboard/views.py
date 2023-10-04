@@ -177,6 +177,45 @@ def index(request):
     return render(request, 'Dashboard/index.html',context)
 
 
+
+
+# views.py
+
+from .models import Notification
+
+
+
+@receiver(post_save, sender=Reclamation)
+def create_intervention(sender, instance, created, **kwargs):
+    if created and not instance.intervention_cree:
+        intervention = Intervention(
+            Nom_Client=instance.Nom_Client,
+            Numéro=instance.Numéro,
+            Ville=instance.Ville,
+            Address=instance.Address,
+            Code_postal=instance.Code_postal,
+            Commentaire=instance.Details,
+            # Remplissez les autres champs d'intervention ici
+        )
+        intervention.save()
+        instance.intervention = intervention
+        instance.intervention_cree = True
+        instance.save()
+
+
+
+@receiver(post_save, sender=Reclamation)
+def create_notification(sender, instance, created, **kwargs):
+    if created :
+        notification = Notification(
+            username=instance.Nom_Client,
+            message="Nouvelle réclamation ajoutée."
+        )
+        notification.save()
+        instance.notification = notification
+        instance.save()
+
+
 def population_chart(request):
     labels = []
     data = []
