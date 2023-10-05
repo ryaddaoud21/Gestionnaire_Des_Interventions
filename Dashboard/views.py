@@ -21,8 +21,21 @@ def list_interventions(request):
     date = datetime.now().date()
     print(date)
     interventions = Intervention.objects.all()
-    context={'interventions':interventions , 'date':date}
+
+    reclamation = Reclamation.objects.all()
+
+    context={'interventions':interventions ,'reclamations':reclamation, 'date':date}
     return render(request, 'Dashboard/list_intervetions.html',context)
+
+def list_reclamations(request):
+    date = datetime.now().date()
+    print(date)
+    interventions = Intervention.objects.all()
+
+    reclamations = Reclamation.objects.all()
+
+    context={'interventions':interventions ,'reclamations':reclamations, 'date':date}
+    return render(request, 'Dashboard/list_reclamation.html',context)
 
 def users_profile(request):
     date = datetime.now().date()
@@ -56,9 +69,9 @@ def intervention_detail(request,pk):
 def list_techniciens(request):
     date = datetime.now().date()
     print(date)
-    interventions = Intervention.objects.all()
-    tech = UserProfile.objects.all()
-    context={'interventions':interventions , 'date':date,'techs':tech}
+    techs = Technicien.objects.all()
+    print(techs)
+    context={ 'date':date,'techs':techs}
     return render(request, 'Dashboard/list_techniciens.html',context)
 
 def list_interventions_enattente(request):
@@ -261,7 +274,18 @@ def register(request):
             form.save()
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
+
+
             user = authenticate(username=username, password=raw_password)
+            if username.startswith('tech@'):
+                # Créer un nouvel utilisateur
+
+                # Créer un technicien associé à l'utilisateur
+                technicien = Technicien.objects.create(
+                    user=user,
+                    nom=username,
+
+                )
             login(request, user,backend='django.contrib.auth.backends.ModelBackend')
             return redirect('index')
     else:
@@ -351,3 +375,20 @@ def Edit_intervention(request,inter_id):
     techs = UserProfile.objects.all()
     context ={'int':intervention, 'form':form  , 'techs': techs}
     return render(request,'Dashboard/Edit_intervention.html' ,context)
+
+from .forms import ReclamationForm
+def Add_reclamation(request):
+    if request.method == 'POST':
+        form = ReclamationForm(request.POST)
+        if form.is_valid():
+            nouvelle_reclamation = form.save(commit=False)
+            # Assurez-vous d'associer la réclamation au client connecté (utilisateur)
+            nouvelle_reclamation.client = request.user.username  # Supposons que vous avez une relation client-utilisateur
+            nouvelle_reclamation.save()
+            messages.success(request, 'Votre réclamation a été soumise avec succès!')
+            # Ajoutez ici la logique de notification à l'administrateur, si nécessaire
+            return redirect('index')
+    else:
+        form = ReclamationForm()
+    context = {'form':form}
+    return render(request,'Dashboard/Ajouter_reclamation.html',context )

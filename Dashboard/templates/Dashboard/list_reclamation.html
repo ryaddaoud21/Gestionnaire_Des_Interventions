@@ -4,11 +4,11 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Liste des intervention</h1>
+      <h1>Liste des reclamations</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Acceuil</a></li>
-          <li class="breadcrumb-item active">Liste des intervention</li>
+          <li class="breadcrumb-item active">Liste des reclamations</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -47,8 +47,6 @@
                         <th scope="col">#ID</th>
                         <th scope="col">Client</th>
                         <th scope="col">Addresse</th>
-                        <th scope="col">Prix</th>
-                        <th scope="col">Status</th>
                         <th scope="col">Detailes</th>
                         <th scope="col">Supprimer</th>
 
@@ -56,24 +54,16 @@
                       </tr>
                     </thead>
                     <tbody>
-                    {% for int in interventions%}
+                    {% for rec in reclamations %}
 
                       <tr>
-                        <th scope="row"><a href="#">{{int.id}}</a></th>
-                        <td>{{int.Nom_Client}}</td>
-                        <td><a href="#" class="text-primary">{{int.Address}}</a></td>
-                        <td>{{int.Prix}}$</td>
-                        {% if int.Status == 'Fait' %}
-                        <td><button type="button" class="btn btn-success btn-sm">{{int.Status}}</button></span></td>
-                        {% elif int.Status == 'en attendant' %}
-                        <td><button type="button" class="btn btn-warning btn-sm">{{int.Status}}</button></td>
-                        {% else  %}
-                        <td> <button type="button" class="btn btn-danger btn-sm">{{int.Status}}</button></td>
+                        <th scope="row"><a href="#">{{rec.id}}</a></th>
+                        <td>{{rec.Nom_Client}}</td>
+                        <td><a href="#" class="text-primary">{{rec.Address}}</a></td>
 
-                        {% endif  %}
-                        <td>                <button type="button" class="btn btn-secondary btn-sm">Detailes</button></td>
+                        <td> <button type="button" class="btn btn-secondary btn-sm">Detailes</button></td>
 
-                        <td>              <button type="button" class="btn btn-danger"><i class="bi bi-x-lg"></i></button></td>
+                        <td> <button type="button" class="btn btn-danger"><i class="bi bi-x-lg"></i></button></td>
 
 
 

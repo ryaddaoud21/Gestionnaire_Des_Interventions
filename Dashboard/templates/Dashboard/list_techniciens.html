@@ -28,8 +28,6 @@
                     <th scope="col">#</th>
                     <th scope="col">Nom</th>
                     <th scope="col">Prénom</th>
-                    <th scope="col">Addresse</th>
-                    <th scope="col">Ville</th>
                     <th scope="col">Téléphone</th>
                     <th scope="col">Email</th>
                   </tr>
@@ -38,12 +36,10 @@
                 {% for int in techs %}
                   <tr>
                     <th scope="row">{{int.id}}</th>
-                    <td>{{int.Nom}}</td>
-                    <td>{{int.Prénom}}</td>
-                    <td>{{int.Addresse}}</td>
-                    <td>{{int.Ville}}</td>
-                    <td>{{int.Téléphone}}</td>
-                    <td>{{int.Email}}</td>
+                    <td>{{int.nom}}</td>
+                    <td>{{int.prenom}}</td>
+                    <td>{{int.numero_telephone}}</td>
+                    <td>{{int.email}}</td>
                   </tr>
                {% endfor %}
                 </tbody>

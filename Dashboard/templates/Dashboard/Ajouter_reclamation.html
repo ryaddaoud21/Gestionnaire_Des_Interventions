@@ -1,0 +1,92 @@
+{% extends 'Dashboard/main1.html' %}
+{% block content %}
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+
+  <main>
+    <div class="container">
+
+      <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+
+              <div class="d-flex justify-content-center py-4">
+                <a href="{% url 'index' %}" class="logo d-flex align-items-center w-auto">
+                  <span class="d-none d-lg-block">Solution</span>
+                                    <span class="d-none d-lg-block" style="color:orange;">31</span>
+
+                </a>
+              </div><!-- End Logo -->
+
+<div class="card mb-6" style="width: 121%; max-width: 500px;">
+                <div class="card-body">
+
+                  <div class="pt-6 pb-2">
+                    <h5 class="card-title text-center pb-0 fs-4">Envoyer une reclamation</h5>
+                    <p class="text-center small">Entrez vos informations personnelles et le détail de votre reclamation </p>
+                  </div>
+<form class="row g-3 needs-validation" name="form_reclamation" method="POST" action="{% url 'Add_reclamation' %}">
+    {% csrf_token %}
+
+    <div class="col-md-6">
+        <label for="Nom_Client" class="form-label">Nom du Client</label>
+        <input type="text" name="Nom_Client" class="form-control" id="Nom_Client" required>
+        <div class="invalid-feedback">Veuillez entrer le nom du client.</div>
+    </div>
+
+    <div class="col-md-6">
+        <label for="Numéro" class="form-label">Numéro de Téléphone</label>
+        <input type="text" name="Numéro" class="form-control" id="Numéro" required>
+        <div class="invalid-feedback">Veuillez entrer le numéro de téléphone.</div>
+    </div>
+
+    <div class="col-12">
+        <label for="Address" class="form-label">Adresse</label>
+        <input type="text" name="Address" class="form-control" id="Address" required>
+        <div class="invalid-feedback">Veuillez entrer l'adresse.</div>
+    </div>
+
+    <div class="col-md-6">
+        <label for="Ville" class="form-label">Ville</label>
+        <input type="text" name="Ville" class="form-control" id="Ville" required>
+        <div class="invalid-feedback">Veuillez entrer la ville.</div>
+    </div>
+
+    <div class="col-md-6">
+        <label for="Code_postal" class="form-label">Code Postal</label>
+        <input type="text" name="Code_postal" class="form-control" id="Code_postal" required>
+        <div class="invalid-feedback">Veuillez entrer le code postal.</div>
+    </div>
+
+    <div class="col-12">
+        <label for="Details" class="form-label">Détails de la Réclamation</label>
+        <textarea name="Details" class="form-control" id="Details" rows="4"></textarea>
+    </div>
+
+    <div class="col-12">
+        <button class="btn btn-primary w-100" type="submit">Soumettre la Réclamation</button>
+    </div>
+</form>
+
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+  </main><!-- End #main -->
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+
+
+{% endblock content %}

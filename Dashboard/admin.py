@@ -9,5 +9,6 @@ admin.site.register(Event)
 admin.site.register(UserProfile)
 admin.site.register(Client)
 admin.site.register(Notification)
+admin.site.register(Technicien)
 admin.site.register(Reclamation)
 

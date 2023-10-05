@@ -256,6 +256,19 @@
           <span>Planification</span>
         </a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#componen-ts-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-menu-button-wide"></i><span>Reclamations</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="componen-ts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+
+          <li>
+            <a href="{% url 'list_reclamations'%}">
+              <i class="bi bi-circle"></i><span>Liste Des reclamations</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Components Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">

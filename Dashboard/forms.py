@@ -29,3 +29,10 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'email', 'password1', 'password2', )
+
+
+class ReclamationForm(forms.ModelForm):
+    class Meta:
+        model = Reclamation
+        fields = ['Nom_Client', 'Numéro', 'Address', 'Ville', 'Code_postal', 'Details']
+

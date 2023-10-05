@@ -10,6 +10,15 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.urls import reverse
 
+class Technicien(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    nom = models.CharField(max_length=100)
+    prenom = models.CharField(max_length=100)
+    numero_telephone = models.CharField(max_length=15)
+    email = models.EmailField()
+
+    def __str__(self):
+        return f"{self.nom} {self.prenom}"
 
 class  UserProfile(models.Model):
     user = models.OneToOneField(User,related_name='userprofile', on_delete=models.SET_NULL,null=True)
@@ -51,6 +60,8 @@ class Intervention(models.Model):
     Address = models.CharField(max_length=100, blank=False , null=False)
     Code_postal = models.IntegerField()
     Par= models.ForeignKey(UserProfile, on_delete=models.SET_NULL, null=True, blank=True, )
+    technicien = models.ForeignKey(Technicien, on_delete=models.SET_NULL, null=True, blank=True)
+
     Commentaire = models.CharField(max_length=500, blank=True, null=True)
     Prix = models.IntegerField(blank=True, null=True)
     Status = models.CharField(max_length=500,choices=CHOICES, default='en attendant', blank=True, null=True)
