@@ -33,6 +33,7 @@ urlpatterns = [
     path('Techniciens/list',list_techniciens ,name='list_techniciens'),
     path('clients/list',clients ,name='clients'),
     path('interventions/list/effectuees',list_interventions_effectuees ,name='list_interventions_effectuees'),
+    path('notifications/',notifications ,name='notifications'),
     path('interventions/list/en_attente',list_interventions_enattente ,name='list_interventions_enattente'),
     path('interventions/list/historique',list_interventions_historique ,name='list_interventions_historique'),
     path('interventions/Ajouter', ajouter_intervention, name='ajouter_intervention'),

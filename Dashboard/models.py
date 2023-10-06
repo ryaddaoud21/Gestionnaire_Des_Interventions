@@ -91,11 +91,21 @@ class Reclamation(models.Model):
     Details = models.CharField(max_length=500, blank=True, null=True)
     intervention_cree = models.BooleanField(default=False)
 
+
+
+
 class Notification(models.Model):
     username = models.CharField(max_length=255,null=True,blank=True)
     message = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     is_read = models.BooleanField(default=False)
+
+
+
+
+    def __str__(self):
+        return (self.username)
+
 
 
 

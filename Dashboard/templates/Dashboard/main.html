@@ -72,77 +72,67 @@
 
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-bell"></i>
-            <span class="badge bg-primary badge-number">4</span>
+            <span class="badge bg-primary badge-number">{{count_un_read}}</span>
           </a><!-- End Notification Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
             <li class="dropdown-header">
-              You have 4 new notifications
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+              You have {{count_un_read}} new notifications
             </li>
             <li>
               <hr class="dropdown-divider">
             </li>
+            {% for notification in  notifications %}
+            {% if notification.is_read == False %}
 
             <li class="notification-item">
               <i class="bi bi-exclamation-circle text-warning"></i>
               <div>
-                <h4>Lorem Ipsum</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>30 min. ago</p>
+                <h4>{{notification.username}}</h4>
+                <p>{{notification.message}}</p>
+                <p>{{notification.created_at}}</p>
               </div>
             </li>
+            {% endif %}
 
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+            {% endfor %}
 
-            <li class="notification-item">
-              <i class="bi bi-x-circle text-danger"></i>
-              <div>
-                <h4>Atque rerum nesciunt</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>1 hr. ago</p>
-              </div>
-            </li>
 
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-check-circle text-success"></i>
-              <div>
-                <h4>Sit rerum fuga</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>2 hrs. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-info-circle text-primary"></i>
-              <div>
-                <h4>Dicta reprehenderit</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>4 hrs. ago</p>
-              </div>
-            </li>
 
             <li>
               <hr class="dropdown-divider">
             </li>
             <li class="dropdown-footer">
-              <a href="#">Show all notifications</a>
+              <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+              <script>
+              $(document).ready(function() {
+                $("#showAllNotifications").click(function(event) {
+                  event.preventDefault();
+
+                  // Effectuer la requête Ajax pour marquer toutes les notifications comme lues
+                  $.ajax({
+                    url: '/notifications', // Remplacez par l'URL de votre route ou point d'API
+                    type: 'POST', // Utilisez POST ou GET en fonction de votre mise en œuvre
+                    success: function(response) {
+                      // Mettre à jour le nombre de notifications non lues
+                      $('#count_un_read').text('0');
+
+                      // Vous pouvez également masquer les notifications non lues ici si nécessaire
+                    },
+                    error: function(error) {
+                      console.error('Erreur lors de la requête Ajax :', error);
+                    }
+                  });
+                });
+              });
+              </script>
+              <a href="{% url 'notifications' %}">Show all notifications</a>
             </li>
 
           </ul><!-- End Notification Dropdown Items -->
 
         </li><!-- End Notification Nav -->
-
+        {% comment %}
         <li class="nav-item dropdown">
 
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
@@ -182,6 +172,7 @@
           </ul><!-- End Messages Dropdown Items -->
 
         </li><!-- End Messages Nav -->
+        {% endcomment %}
 
         <li class="nav-item dropdown pe-3">
 
@@ -192,8 +183,7 @@
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6>Kevin Anderson</h6>
-              <span>Web Designer</span>
+              <h6>{{request.user.username}}</h6>
             </li>
             <li>
               <hr class="dropdown-divider">

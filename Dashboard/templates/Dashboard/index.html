@@ -216,7 +216,7 @@
                         <th scope="col">#ID</th>
                         <th scope="col">Client</th>
                         <th scope="col">Addresse</th>
-                        <th scope="col">Prix</th>
+                        <th scope="col">Date</th>
                         <th scope="col">Status</th>
                       </tr>
                     </thead>
@@ -226,7 +226,7 @@
                         <th scope="row"><a href="#">{{int.id}}</a></th>
                         <td>{{int.Nom_Client}}</td>
                         <td><a href="#" class="text-primary">{{int.Address}}</a></td>
-                        <td>{{int.Prix}}$</td>
+                        <td>{{int.Date}}</td>
                         {% if int.Status == 'Fait' %}
                         <td><span class="badge bg-success">{{int.Status}}</span></td>
                         {% elif int.Status == 'en attendant' %}

@@ -139,6 +139,8 @@ from geopy.geocoders import Nominatim
 
 @login_required
 def index(request):
+    notifications= Notification.objects.all()
+    count_un_read = Notification.objects.filter(is_read=False).count()
     geolocator = Nominatim(user_agent="Dashboard")
     location = geolocator.geocode("France")
     if location:
@@ -186,11 +188,14 @@ def index(request):
 
 
     context={'interventions':interventions,'Total_I':Total_I,'Total_C':Total_C,'Total_U':Total_U, 'labelz': labels,
-        'data': data,'data_ints':data_ints,'labelz_ints':labels_ints,'coordinates': coordinates}
+    'data': data,'data_ints':data_ints,'labelz_ints':labels_ints,'coordinates': coordinates,'notifications':notifications
+             ,'count_un_read':count_un_read}
     return render(request, 'Dashboard/index.html',context)
 
 
-
+def notifications(request):
+    notifications= Notification.objects.all()
+    return render(request, 'Dashboard/notifications.html',{'notifications':notifications})
 
 # views.py
 
@@ -220,6 +225,8 @@ def create_intervention(sender, instance, created, **kwargs):
 @receiver(post_save, sender=Reclamation)
 def create_notification(sender, instance, created, **kwargs):
     if created :
+        message = f"Nouvelle réclamation ajoutée par {instance.Nom_Client} (Numéro de réclamation : {instance.id})."
+
         notification = Notification(
             username=instance.Nom_Client,
             message="Nouvelle réclamation ajoutée."

@@ -1,0 +1,87 @@
+{% extends 'Dashboard/main.html' %}
+{% block content %}
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Liste des Notifications</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Acceuil</a></li>
+          <li class="breadcrumb-item active">Notifications</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section dashboard">
+
+
+    <div class="col-12">
+        <div class="card-body ">
+          {% for notification in notifications %}
+              <div class="card mb-3">
+                <div class="card-body">
+                <li class="notification-item">
+                  <div class="notification-content">
+                    <h4 class="username">{{notification.username}}</h4>
+                    <p class="created-at">{{notification.created_at}}</p>
+
+                    <p class="message">{{notification.message}}</p>
+                  </div>
+                  <div class="notification-seen">
+                    <i class="bi bi-check-circle text-success"></i>
+                    <span class="seen-text">Seen</span>
+                  </div>
+                </li>
+               </div>
+              </div>
+          {% endfor %}
+
+         </div>
+        </div>
+
+
+
+    </section>
+
+  </main><!-- End #main -->
+
+<style>
+  /* Styles pour formater les éléments de notification */
+.notification-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.notification-content {
+  flex-grow: 1;
+}
+
+.username {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.message {
+  margin-bottom: 5px;
+}
+
+.created-at {
+  font-size: smaller;
+}
+
+.notification-seen {
+  display: flex;
+  align-items: center;
+}
+
+.seen-text {
+  font-size: smaller;
+  margin-left: 5px;
+  color: #28a745; /* Couleur verte pour "Seen" */
+}
+
+</style>
+{% endblock content %}
