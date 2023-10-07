@@ -16,6 +16,8 @@ class Technicien(models.Model):
     prenom = models.CharField(max_length=100)
     numero_telephone = models.CharField(max_length=15)
     email = models.EmailField()
+    Addresse = models.CharField(max_length=100, blank=True, null=True)
+    Ville = models.CharField(max_length=100, blank=True, null=True)
 
     def __str__(self):
         return f"{self.nom} {self.prenom}"
@@ -51,6 +53,17 @@ CHOICES = (
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
+class Reclamation(models.Model):
+    Date_Ajouté = models.DateTimeField(auto_now_add=True)
+    Nom_Client = models.CharField(max_length=100, blank=False, null=False)
+    Numéro = models.CharField(max_length=100, blank=False, null=False)
+    Address = models.CharField(max_length=100, blank=False, null=False)
+    Ville = models.CharField(max_length=100, blank=False, null=False)
+    Code_postal = models.IntegerField()
+    Details = models.CharField(max_length=500, blank=True, null=True)
+    intervention_cree = models.BooleanField(default=False)
+
+
 class Intervention(models.Model):
     Date_Ajouté = models.DateTimeField(auto_now_add=True)
     Nom_Client= models.CharField(max_length=100, blank=False , null=False)
@@ -61,6 +74,8 @@ class Intervention(models.Model):
     Code_postal = models.IntegerField()
     Par= models.ForeignKey(UserProfile, on_delete=models.SET_NULL, null=True, blank=True, )
     technicien = models.ForeignKey(Technicien, on_delete=models.SET_NULL, null=True, blank=True)
+    reclamation = models.ForeignKey(Reclamation, on_delete=models.SET_NULL, null=True, blank=True)
+
 
     Commentaire = models.CharField(max_length=500, blank=True, null=True)
     Prix = models.IntegerField(blank=True, null=True)
@@ -80,16 +95,6 @@ class Intervention(models.Model):
         url = reverse('calendar')
         return f'<a style="background-color: wheat ; color: black;" href="{url}"> {str("#") + str(self.id) + str("  ") + str(self.Nom_Client)} </a>'
 
-
-class Reclamation(models.Model):
-    Date_Ajouté = models.DateTimeField(auto_now_add=True)
-    Nom_Client = models.CharField(max_length=100, blank=False, null=False)
-    Numéro = models.CharField(max_length=100, blank=False, null=False)
-    Address = models.CharField(max_length=100, blank=False, null=False)
-    Ville = models.CharField(max_length=100, blank=False, null=False)
-    Code_postal = models.IntegerField()
-    Details = models.CharField(max_length=500, blank=True, null=True)
-    intervention_cree = models.BooleanField(default=False)
 
 
 

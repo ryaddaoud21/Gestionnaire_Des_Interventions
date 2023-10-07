@@ -27,9 +27,14 @@
 <form method="post" action="{% url 'ajouter_intervention' %}">
   {% csrf_token %}
   <div class="row mb-3">
-    <div class="col-sm-6">
-      <label class="col-form-label">Nom de Client</label>
-      <input type="text" name="Nom_Client" class="form-control">
+   <div class="col-sm-6">
+        <label class="col-form-label">Choix de Réclamation</label>
+        <select name="Reclamation" class="form-select" aria-label="Default select example">
+            <option value="" disabled selected>Choisissez une réclamation</option>
+            {% for reclamation in reclamations %}
+                <option value="{{ reclamation.id }}">{{ reclamation.Nom_Client }}</option>
+            {% endfor %}
+        </select>
     </div>
     <div class="col-sm-6">
       <label class="col-form-label">Email</label>

@@ -110,7 +110,8 @@ def ajouter_intervention(request):
     else:
         form = InterventionForm()
     techs = UserProfile.objects.all()
-    context= {'form': form , 'techs':techs}
+    reclamations = Reclamation.objects.all()
+    context= {'form': form , 'techs':techs,'reclamations':reclamations}
     return render(request, 'Dashboard/ajouter_intervention.html',context)
 
 def ajouter_client(request):

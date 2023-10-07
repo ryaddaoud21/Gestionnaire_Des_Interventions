@@ -65,8 +65,11 @@
                         <th scope="row"><a href="#">{{int.id}}</a></th>
                         <td>{{int.Nom_Client}}</td>
                         <td><a href="#" class="text-primary">{{int.Address}}</a></td>
+                         {% if int.Prix == None %}
+                        <td></td>
+                        {% else %}
                         <td>{{int.Prix}}$</td>
-                        <td><button type="button" class="btn btn-success btn-sm">{{int.Status}}</button></span></td>
+                        {% endif %}                        <td><button type="button" class="btn btn-success btn-sm">{{int.Status}}</button></span></td>
 
                         <td>                <button type="button" class="btn btn-secondary btn-sm">Detailes</button></td>
 
