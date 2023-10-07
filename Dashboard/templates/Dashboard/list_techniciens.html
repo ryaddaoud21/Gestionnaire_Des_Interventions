@@ -21,12 +21,18 @@
       <div class="card mb-3">
         <div class="card-body text-center">
           <!-- Photo du technicien sous forme de cercle -->
+<<<<<<< HEAD
            <div class="rounded-circle mx-auto mb-3" style="width: 100px; height: 100px; background-color: #eee; overflow: hidden;">
             <img src="{% static 'Dashboard/assets/img/profile.jpg' %}"  style="width: 100%; height: 100%; object-fit: cover;">
+=======
+          <div class="rounded-circle mx-auto mb-3" style="width: 100px; height: 100px; background-color: #eee;">
+            <!-- Inclure ici la balise <img> pour la photo -->
+>>>>>>> 2f4348dfffb05893b99148bc416998d2347fc524
           </div>
 
           <!-- Nom et prénom en gras -->
           <h4 class="font-weight-bold">{{int.nom}} {{int.prenom}}</h4>
+<<<<<<< HEAD
             <br>
                       <!-- Numéro de téléphone avec une icône -->
             <div class="text-muted">
@@ -38,6 +44,14 @@
             <br>
               <button class="btn btn-light">Contacter</button>
 
+=======
+
+          <!-- Numéro de téléphone avec une icône -->
+          <p><i class="fas fa-phone"></i> {{int.numero_telephone}}</p>
+
+          <!-- Email avec une icône -->
+          <p><i class="fas fa-envelope"></i> {{int.email}}</p>
+>>>>>>> 2f4348dfffb05893b99148bc416998d2347fc524
         </div>
       </div>
     </div>
