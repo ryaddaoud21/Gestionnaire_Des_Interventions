@@ -1,10 +1,12 @@
 {% extends 'Dashboard/main.html' %}
 {% block content %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Liste des reclamations</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Acceuil</a></li>
@@ -25,7 +27,7 @@
             <div class="col-12">
               <div class="card recent-sales overflow-auto">
                 <div class="card-body">
-                  <h5 class="card-title">Intervention récente <span>| aujourd'hui le {{date}}</span></h5>
+                  <h5 class="card-title">Reclamations récente <span>| aujourd'hui le {{date}}</span></h5>
                   <table class="table table-borderless datatable">
                     <thead>
                       <tr>
@@ -33,27 +35,22 @@
                         <th scope="col">Addresse</th>
                         <th scope="col">Detailes</th>
                         <th scope="col">Supprimer</th>
-
-
                       </tr>
                     </thead>
                     <tbody>
                     {% for rec in reclamations %}
-
                       <tr>
                         <td>{{rec.Nom_Client}}</td>
                         <td><a href="#" class="text-primary">{{rec.Address}}</a></td>
 
-                        <td> <button type="button" class="btn btn-secondary btn-sm">Detailes</button></td>
-
+                        <td>
+                            <button type="button" class="btn btn-secondary btn-sm" data-id="{{ rec.id }}"> Detail
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </td>
                         <td> <button type="button" class="btn btn-danger"><i class="bi bi-x-lg"></i></button></td>
-
-
-
                       </tr>
                     {% endfor %}
-
-
                     </tbody>
                   </table>
 
@@ -73,4 +70,37 @@
 
   </main><!-- End #main -->
 
+   <div class="modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="detailsModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="detailsModalLabel">Détails de la Réclamation</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p></p> <!-- Contenu de la réclamation -->
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+<script>
+  $(document).ready(function() {
+    // Lorsque le bouton "Détails" est cliqué
+    $('.details-button').on('click', function() {
+      // Récupérer les données de la réclamation correspondante
+      var client = $(this).data('client');
+      var address = $(this).data('address');
+      // Remplir le contenu du modal avec les données de la réclamation
+      $('#detailsModal .modal-title').text(client);
+      $('#detailsModal .modal-body p').text(address);
+      // Afficher le modal
+      $('#detailsModal').modal('show');
+    });
+  });
+</script>
 {% endblock content %}

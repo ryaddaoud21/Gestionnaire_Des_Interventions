@@ -2,13 +2,16 @@
 
 
 {% block content %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>tableau de bord</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
@@ -25,7 +28,7 @@
           <div class="row">
 
             <!-- Sales Card -->
-            <div class="col-xxl-4 col-md-6">
+            <div class="col-xxl-4 col-md-4">
               <div class="card info-card sales-card">
 
                 <div class="filter">
@@ -57,9 +60,8 @@
 
               </div>
             </div><!-- End Sales Card -->
-
             <!-- Revenue Card -->
-            <div class="col-xxl-4 col-md-6">
+            <div class="col-xxl-4 col-md-4">
               <div class="card info-card revenue-card">
 
                 <div class="filter">
@@ -91,9 +93,8 @@
 
               </div>
             </div><!-- End Revenue Card -->
-
             <!-- Customers Card -->
-            <div class="col-xxl-4 col-xl-12">
+            <div class="col-xxl-4 col-md-4">
 
               <div class="card info-card customers-card">
 
@@ -127,6 +128,8 @@
               </div>
 
             </div>
+
+
             <div class="col-12" >
                 <div class="card">
                 <div class="card-body" >
