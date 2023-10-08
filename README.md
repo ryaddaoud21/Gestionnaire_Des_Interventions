@@ -44,6 +44,7 @@ Bienvenue dans l'application de gestion des interventions. Cette section expliqu
 
 ### Étape 4 : Suivi de la Réclamation
 
+
 1. Retournez au tableau de bord du client pour voir la liste de toutes vos réclamations.
 
 2. Vous pouvez voir le statut de chaque réclamation, par exemple, "En Attente" ou "En Cours de Traitement".
@@ -86,14 +87,14 @@ Pour déployer cette application localement, suivez les étapes ci-dessous :
    ```shell
    python manage.py makemigrations
    python manage.py migrate
-   
+
 4. Créez un superutilisateur pour accéder à la zone d'administration :
    ```shell
    python manage.py createsuperuser
-
-5.Lancez le serveur de développement  :
-   ```shell
+5.Lancez le serveur de développement :
+   ```shell 
    python manage.py runserver
+
 
 ## Utilisation
 
