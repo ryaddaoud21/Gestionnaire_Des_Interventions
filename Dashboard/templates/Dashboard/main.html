@@ -43,7 +43,7 @@
   ======================================================== -->
 </head>
 
-<body>
+<body style="background-color: {% if request.user.is_superuser %}F9F5F6 {% else %}FAF3F0{% endif %};" >
 
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">

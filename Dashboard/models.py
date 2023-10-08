@@ -93,7 +93,9 @@ class Intervention(models.Model):
     @property
     def get_html_url(self):
         url = reverse('calendar')
-        return f'<a style="background-color: wheat ; color: black;" href="{url}"> {str("#") + str(self.id) + str("  ") + str(self.Nom_Client)} </a>'
+
+        path = reverse('intervention_detail', args=[self.pk])
+        return f'<a style=" color: black;" href="{path} "> {str("INT ") + str(self.id) + str("  |  ") + str(self.Nom_Client)} </a>'
 
 
 

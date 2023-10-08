@@ -16,10 +16,14 @@ class Calendar(HTMLCalendar):
 
 		d = ''
 		for event in events_per_day:
-			d += f'<li> {event.get_html_url} </li>'
+			d += f'<p> {event.get_html_url} </p>'
 
 		if day != 0:
-			return f"<td><span class='date'>{day}</span><ul class='dateevent'> {d} </ul></td>"
+			if events_per_day.exists():
+				return f"<td style='background-color:A8DF8E '><span class='date'>{day}</span><ul class='dateevent'> {d} </ul></td>"
+			else:
+				return f"<td><span class='date'>{day}</span><ul class='dateevent'> {d} </ul></td>"
+
 		return '<td></td>'
 
 	# formats a week as a tr

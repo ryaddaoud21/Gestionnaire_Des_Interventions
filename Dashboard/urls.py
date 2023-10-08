@@ -35,6 +35,7 @@ urlpatterns = [
     path('interventions/list/effectuees',list_interventions_effectuees ,name='list_interventions_effectuees'),
     path('notifications/',notifications ,name='notifications'),
     path('interventions/list/en_attente',list_interventions_enattente ,name='list_interventions_enattente'),
+    path('interventions/list/en_attente',list_interventions_enattente ,name='list_interventions_enattente'),
     path('interventions/list/historique',list_interventions_historique ,name='list_interventions_historique'),
     path('interventions/Ajouter', ajouter_intervention, name='ajouter_intervention'),
     path('interventions/Détail/<int:pk>', intervention_detail, name='intervention_detail'),
