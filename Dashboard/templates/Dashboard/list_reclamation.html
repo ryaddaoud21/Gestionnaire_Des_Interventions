@@ -45,7 +45,6 @@
 
                         <td>
                             <button type="button" class="btn btn-secondary btn-sm" data-id="{{ rec.id }}"> Detail
-                                <i class="bi bi-x-lg"></i>
                             </button>
                         </td>
                         <td> <button type="button" class="btn btn-danger"><i class="bi bi-x-lg"></i></button></td>
@@ -69,8 +68,8 @@
     </section>
 
   </main><!-- End #main -->
-
-   <div class="modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="detailsModalLabel" aria-hidden="true">
+   <!-- #POPUP -->
+    <div class="modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="detailsModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -89,18 +88,25 @@
       </div>
     </div>
 <script>
-  $(document).ready(function() {
-    // Lorsque le bouton "Détails" est cliqué
-    $('.details-button').on('click', function() {
-      // Récupérer les données de la réclamation correspondante
-      var client = $(this).data('client');
-      var address = $(this).data('address');
-      // Remplir le contenu du modal avec les données de la réclamation
-      $('#detailsModal .modal-title').text(client);
-      $('#detailsModal .modal-body p').text(address);
-      // Afficher le modal
-      $('#detailsModal').modal('show');
+    $(document).ready(function () {
+        // Lorsque le bouton "Détail" est cliqué
+        $('.btn-secondary').on('click', function () {
+            var recId = $(this).data('id'); // Récupère l'ID de la réclamation à afficher (à personnaliser selon votre structure de données)
+
+            // Vous pouvez ici utiliser Ajax pour charger les détails de la réclamation
+            // et les afficher dans le contenu du modal.
+            // Remarque : le code ci-dessous est un exemple simplifié.
+
+            var nomClient = $(this).closest('tr').find('td:eq(0)').text(); // Récupère le texte de la première colonne
+            var adresse = $(this).closest('tr').find('td:eq(1) a').text(); // Récupère le texte du lien dans la deuxième colonne
+
+            // Affiche le nom du client et l'adresse dans le modal
+            $('.modal-body p').html("<strong>Nom du client :</strong> " + nomClient + "<br><strong>Adresse :</strong> " + adresse);
+
+            // Affiche le modal
+            $('#detailsModal').modal('show');
+        });
     });
-  });
 </script>
+
 {% endblock content %}

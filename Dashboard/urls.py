@@ -43,7 +43,7 @@ urlpatterns = [
     path('client/Ajouter', ajouter_client, name='ajouter_client'),
     path('reclamation/Ajouter', Add_reclamation, name='Add_reclamation'),
     path('profile/', users_profile, name='users_profile'),
-    url(r'^calendar/$', CalendarView.as_view(), name='calendar'),  # here
+    url(r'^calendar/$', CalendarView.as_view(), name='calendar'),  # herepythpyt
     path('population-chart/', population_chart, name='population-chart'),
 
 ]
