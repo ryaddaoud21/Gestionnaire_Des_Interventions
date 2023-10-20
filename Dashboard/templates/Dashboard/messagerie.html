@@ -1,0 +1,94 @@
+{% extends 'Dashboard/main.html' %}
+{% load static %}
+{% block content %}
+
+  <style>
+    /* Styles for small and round user profile images */
+    .user-profile-image.small-round {
+      width: 40px; /* Définissez la largeur souhaitée */
+      height: 40px; /* Définissez la hauteur souhaitée */
+      border-radius: 50%; /* Pour rendre l'image ronde */
+    }
+
+    /* Styles for user A message card */
+    .message {
+      background-color: #EE9322; /* Couleur de fond pour les messages de Utilisateur A */
+      color: white; /* Texte en blanc pour Utilisateur A */
+      border-radius: 10px;
+      padding: 10px;
+      margin: 5px;
+    }
+
+    /* Styles for user B message card */
+    .message-received {
+      background-color: #3085C3; /* Couleur de fond pour les messages reçus de Utilisateur B */
+      color: white; /* Texte en blanc pour Utilisateur B */
+      border-radius: 10px;
+      padding: 10px;
+      margin: 5px;
+    }
+
+    /* Styles for the time element */
+    .message-time {
+      float: right;
+        margin-right: 10px;
+        margin-top: 20px;
+    }
+  </style>
+
+  <main id="main" class="main">
+
+    <section class "section profile">
+      <div class="row">
+        <div class="col-xl-12">
+
+          <div class="card">
+            <div class="card-body pt-3">
+
+              <h5 class="card-title">Discussion </h5>
+
+              <div class="message">
+                <div class="user-info">
+                  <img src="{% static 'Dashboard/assets/img/profile.jpg' %}" alt="Utilisateur A" class="user-profile-image small-round">
+                  <strong>Utilisateur A:</strong>
+                </div>
+                <div class="message-time">10:00 AM</div>
+                <br>
+                <p>Salut, comment ça va ?</p>
+              </div>
+                <br>
+
+              <div class="message-received"  >
+                <div class="user-info">
+                  <img src="{% static 'Dashboard/assets/img/profile.jpg' %}" alt="Utilisateur B" class="user-profile-image small-round">
+                  <strong>Utilisateur B:</strong>
+                </div>
+                <div class="message-time">10:15 AM</div>
+                <br>
+                <p>Ça va bien, merci ! Et toi ?</p>
+              </div>
+                <br>
+                <br>
+
+
+              <!-- Ajoutez d'autres messages ici avec la structure message et les classes appropriées -->
+
+              <!-- Formulaire pour envoyer un nouveau message -->
+              <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                  <textarea name="new_message" class="form-control" placeholder="Écrivez votre message ici"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Envoyer</button>
+              </form>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+{% endblock %}

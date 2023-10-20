@@ -400,3 +400,7 @@ def Add_reclamation(request):
         form = ReclamationForm()
     context = {'form':form}
     return render(request,'Dashboard/Ajouter_reclamation.html',context )
+
+
+def messagerie(request):
+    return render(request,'Dashboard/messagerie.html')

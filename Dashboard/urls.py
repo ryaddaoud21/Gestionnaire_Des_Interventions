@@ -27,6 +27,7 @@ urlpatterns = [
     path('login', auth_views.LoginView.as_view(template_name='Dashboard/login.html'), name='login'),
     path('logout', auth_views.LogoutView.as_view(), name='logout'),
     path('register', register, name='register'),
+    path('messagerie', messagerie, name='messagerie'),
     path('interventions/list',list_interventions ,name='list_interventions'),
     path('reclamations/list',list_reclamations ,name='list_reclamations'),
     path('Planification/',Planning ,name='plan'),
