@@ -93,10 +93,6 @@
         $('.btn-secondary').on('click', function () {
             var recId = $(this).data('id'); // Récupère l'ID de la réclamation à afficher (à personnaliser selon votre structure de données)
 
-            // Vous pouvez ici utiliser Ajax pour charger les détails de la réclamation
-            // et les afficher dans le contenu du modal.
-            // Remarque : le code ci-dessous est un exemple simplifié.
-
             var nomClient = $(this).closest('tr').find('td:eq(0)').text(); // Récupère le texte de la première colonne
             var adresse = $(this).closest('tr').find('td:eq(1) a').text(); // Récupère le texte du lien dans la deuxième colonne
 
